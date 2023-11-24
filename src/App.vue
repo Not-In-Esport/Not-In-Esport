@@ -36,6 +36,7 @@ onUnmounted(() => {
           <img src="@/assets/youtube_logo.svg" alt="youtube_logo" class="logo"/>
         </a>
       </nav>
+      
     </div>
     <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
       <defs>
@@ -57,6 +58,14 @@ onUnmounted(() => {
     </svg>
   </header>
   <header :class="showAltNav ? 'show-alt-nav alt-nav' : 'alt-nav'">
+    <nav class="alt-nav-navbar">
+      <RouterLink to="/about">About</RouterLink>
+      <RouterLink to="/contact">Contact</RouterLink>
+      <RouterLink to="/home">Home</RouterLink>
+      <RouterLink to="/player">Player</RouterLink>
+      <RouterLink to="/staff">Staff</RouterLink>
+      <RouterLink to="/team">Team</RouterLink>
+    </nav>
   </header>
   <main class="main">
     <RouterView />
@@ -67,7 +76,6 @@ onUnmounted(() => {
       <RouterLink to="/player">Player</RouterLink>
       <RouterLink to="/staff">Staff</RouterLink>
       <RouterLink to="/team">Team</RouterLink>
-      <p>This is the nav :!</p>
     </nav>
   </main>
 </template>
@@ -83,18 +91,29 @@ onUnmounted(() => {
   height: 4.25rem;
   opacity: 0;
   transform: translateY(-100%);
-  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.5s, transform 0.8s;
 }
 .show-alt-nav {
   opacity: 1;
   transform: translateY(0);
 }
-a {
+.navbar a {
   color: black;
+}
+.alt-nav-navbar a {
+  color: white;
+}
+.alt-nav-navbar {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .socials {
   position: absolute;
-  right: 3rem;
   display: flex;
   gap: 1rem;
 }
@@ -115,12 +134,13 @@ a {
   z-index: 1;
 }
 h1 {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 1);
   font-size: 3rem;
   font-weight: 300;
   font-family: 'Alfa Slab One';
   text-align: center;
   z-index: 1;
+  letter-spacing: -1.5px;
 }
 .main {
   background-color: white;
@@ -136,7 +156,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+  gap: 5%;
 }
 .hero-waves {
   display: block;
@@ -162,6 +182,47 @@ h1 {
   animation: move-forever3 6s linear infinite;
   -webkit-animation-delay: -2s;
   animation-delay: -2s;
+}
+
+@media screen and (min-width: 1600px) {
+  .socials {
+    margin: auto;
+    margin-left: 80rem;
+  }
+}
+
+@media screen and (max-width: 1600px) and (min-width: 1024px) {
+  .socials {
+    right: 6rem;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 600px) {
+  .title {
+    padding-top: 1rem;
+  }
+  .socials {
+    margin: 0 auto;
+    top: 5rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .title {
+    padding-top: 1rem;
+    gap: 0;
+  }
+  .nie_logo {
+    height: 3.5rem;
+    margin-bottom: 0.25rem;
+  }
+  .socials {
+    margin: 0 auto;
+    top: 4rem;
+  }
 }
 
 @keyframes move-forever1 {

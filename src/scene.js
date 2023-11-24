@@ -2,17 +2,16 @@ import * as THREE from 'three'
 import gsap from 'gsap'
 
 const scene = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera( 40, innerWidth / 170, 0.1, 1000 )
+const camera = new THREE.PerspectiveCamera( 40, (innerWidth - 20) / 170, 0.1, 1000 )
 
 const renderer = new THREE.WebGLRenderer()
 
-renderer.setSize( innerWidth, 170 )
+renderer.setSize( (innerWidth - 20), 170 )
 renderer.setPixelRatio(devicePixelRatio)
 renderer.setClearColor( 0x000000 )
 document.body.prepend( renderer.domElement )
 
-renderer.domElement.style.position = 'absolute';
-renderer.domElement.style.zIndex = 0;
+renderer.domElement.id = 'header-canvas';
 
 const planeGeometry = new THREE.PlaneGeometry( 100, 10, 100, 10 )
 const planeMaterial = new THREE.MeshPhongMaterial	({
@@ -98,7 +97,7 @@ function animate() {
 animate()
 
 addEventListener('resize', () => {
-  const newWidth = innerWidth
+  const newWidth = (innerWidth - 20)
   const newHeight = 170
 
   camera.aspect = newWidth / 170
@@ -108,6 +107,6 @@ addEventListener('resize', () => {
 })
 
 addEventListener('mousemove', (event) => {
-  mouse.x = (event.clientX / innerWidth) * 2 - 1
+  mouse.x = (event.clientX / (innerWidth - 20)) * 2 - 1
   mouse.y = -(event.clientY / 170) * 2 + 1
 })

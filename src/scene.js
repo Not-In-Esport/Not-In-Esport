@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import gsap from 'gsap'
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera( 40, (innerWidth - 20) / 170, 0.1, 1000 )
@@ -22,10 +21,10 @@ const planeMaterial = new THREE.MeshPhongMaterial	({
 })
 const planeMesh = new THREE.Mesh( planeGeometry, planeMaterial )
 
-const light = new THREE.DirectionalLight( 0xffffff, 1 )
+const light = new THREE.DirectionalLight( 0xffffff, 2 )
 light.position.set(0, 0, 1)
 
-const backLight = new THREE.DirectionalLight( 0xffffff, 1 )
+const backLight = new THREE.DirectionalLight( 0xffffff, 2 )
 backLight.position.set(0, 0, -1)
 
 scene.add( planeMesh )
@@ -65,19 +64,6 @@ for (let i = 0; i < planeMesh.geometry.attributes.position.count; i++) {
 }
 planeMesh.geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colors), 3))
 
-const intensityAnimationParams = {
-  intensity: 2, // Initial intensity
-};
-
-// Create a GSAP timeline
-const intensityTimeline = gsap.timeline({ repeat: -1, yoyo: true });
-intensityTimeline.to(intensityAnimationParams, { duration: 10, intensity: 0.5, onUpdate: updateLightIntensity });
-
-function updateLightIntensity() {
-  // Update the light intensity during the animation
-  light.intensity = intensityAnimationParams.intensity;
-  backLight.intensity = intensityAnimationParams.intensity;
-}
 let frame = 0
 function animate() {
 	requestAnimationFrame( animate )

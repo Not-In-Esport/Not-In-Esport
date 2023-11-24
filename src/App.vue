@@ -3,6 +3,7 @@ import { RouterView, RouterLink } from 'vue-router'
 import { ref, onMounted, onUnmounted } from 'vue';
 
 const showAltNav = ref(false)
+const menuSelected = ref(false)
 
 const handleScroll = () => {
   showAltNav.value = window.scrollY > 0
@@ -20,7 +21,17 @@ onUnmounted(() => {
 <template>
   <header>
     <div class="title">
-      <img src="@/assets/nie_logo.png" alt="nie_logo" class="nie_logo"/>
+      <nav :class="menuSelected ? 'menu-selected' : 'menu'" @click="menuSelected = !menuSelected">
+        <div :class="menuSelected ? 'first-bar first-bar-selected' : 'first-bar'"></div>
+        <div :class="menuSelected ? 'second-bar second-bar-selected' : 'second-bar'"></div>
+        <div :class="menuSelected ? 'third-bar third-bar-selected' : 'third-bar'"></div>
+      </nav>
+      <nav class="menu-items">
+        <img src="@/assets/home_logo.svg" alt="home_logo" :class="menuSelected ? 'menu-items-logo home-logo-selected' : 'menu-items-logo'"/>
+        <img src="@/assets/about_logo.svg" alt="about_logo" :class="menuSelected ? 'menu-items-logo about-logo-selected' : 'menu-items-logo'"/>
+        <img src="@/assets/contact_logo.svg" alt="contact_logo" :class="menuSelected ? 'menu-items-logo contact-logo-selected' : 'menu-items-logo'"/>
+      </nav>
+      <img src="@/assets/nie_logo.png" alt="nie_logo" class="nie-logo"/>
       <h1>Not In Esport</h1>
       <nav class="socials">
         <a href="https://twitter.com/NotInEsport" class="logo" target="_blank">
@@ -81,6 +92,71 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
+.menu-items {
+  position: absolute;
+  height: 7rem;
+  width: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.menu-items-logo {
+  position: absolute;
+  z-index: 20;
+  height: 2rem;
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.5s;
+}
+.about-logo-selected {
+  opacity: 1;
+  transform: translateX(-4rem)
+}
+.contact-logo-selected {
+  height: 2.2rem;
+  margin-top: 0.2rem;
+  opacity: 1;
+  transform: translateX(2rem)
+}
+.home-logo-selected {
+  height: 2.4rem;
+  margin-bottom: 0.25rem;
+  opacity: 1;
+  transform: translateX(-1rem)
+}
+.menu-selected {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+.menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+.first-bar, .second-bar, .third-bar {
+  background-color: white;
+  width: 2rem;
+  height: 0.2rem;
+  border-radius: 4px;
+  opacity: 1;
+  transition: transform .5s, opacity .5s;
+}
+
+.first-bar-selected {
+  transform: translateY(0.6rem) translateX(-8rem) rotate(45deg);
+}
+.second-bar-selected {
+  transform: translateX(-8rem);
+  opacity: 0;
+}
+.third-bar-selected {
+  transform: translateY(-0.6rem) translateX(-8rem) rotate(-45deg);
+}
 .alt-nav {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.95));
   z-index: 10;
@@ -129,7 +205,7 @@ onUnmounted(() => {
   justify-content: center;
   gap: 1rem;
 }
-.nie_logo {
+.nie-logo {
   height: 5rem;
   z-index: 1;
 }
@@ -157,6 +233,7 @@ h1 {
   justify-content: center;
   align-items: center;
   gap: 5%;
+  flex-wrap: wrap;
 }
 .hero-waves {
   display: block;
@@ -187,27 +264,60 @@ h1 {
 @media screen and (min-width: 1600px) {
   .socials {
     margin: auto;
-    margin-left: 80rem;
+    margin-left: 85rem;
+  }
+  .menu {
+    margin-right: 92rem;
+  }
+  .menu-selected {
+    margin-right: 92rem;
+  }
+  .menu-items {
+    margin-right: 92rem;
   }
 }
 
 @media screen and (max-width: 1600px) and (min-width: 1024px) {
   .socials {
-    right: 6rem;
+    right: 3rem;
+  }
+  .menu {
+    left: 5rem;
+  }
+  .menu-selected {
+    left: 5rem;
   }
 }
 
-@media screen and (max-width: 1024px) and (min-width: 600px) {
+@media screen and (max-width: 1024px) and (min-width: 700px) {
   .title {
     padding-top: 1rem;
   }
+  .nie-logo {
+    display: none;
+  }
   .socials {
-    margin: 0 auto;
-    top: 5rem;
+    flex-direction: column;
+    flex-wrap: wrap;
+    right: 7rem;
+    height: 4rem;
+    top: 2rem;
+  }
+  .menu {
+    left: 5rem;
+  }
+  .menu-selected {
+    left: 5rem;
+  }
+  .logo {
+    height: 1.25rem;
+  }
+  .first-bar, .second-bar, .third-bar {
+    width: 1.5rem;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   h1 {
     font-size: 2rem;
   }
@@ -215,13 +325,22 @@ h1 {
     padding-top: 1rem;
     gap: 0;
   }
-  .nie_logo {
-    height: 3.5rem;
-    margin-bottom: 0.25rem;
+  .nie-logo {
+    display: none;
   }
   .socials {
     margin: 0 auto;
-    top: 4rem;
+    top: 3.8rem;
+    gap: 0.5rem;
+  }
+  .menu {
+    display: none;
+  }
+  .menu-selected {
+    display: none;
+  }
+  .logo {
+    height: 1rem;
   }
 }
 

@@ -27,6 +27,11 @@ jobs:
 
       - name: Verify repo
         run: dir
+      
+      - name: Set Git user details
+        run: |
+          git config --global user.email "tugdual.de-reviers@epitech.eu"
+          git config --global user.name "Tugdual de Reviers"
 
       - name: Deploy to GitHub Pages
         run: npm run deploy

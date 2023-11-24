@@ -67,6 +67,7 @@ onUnmounted(() => {
       <RouterLink to="/player">Player</RouterLink>
       <RouterLink to="/staff">Staff</RouterLink>
       <RouterLink to="/team">Team</RouterLink>
+      <p>This is the nav :!</p>
     </nav>
   </main>
 </template>

@@ -61,7 +61,7 @@ const mouse = {
 
 const colors = []
 for (let i = 0; i < planeMesh.geometry.attributes.position.count; i++) {
-  colors.push(0.015, 0.015, 0.015)
+  colors.push(0.05, 0.05, 0.05)
 }
 planeMesh.geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colors), 3))
 

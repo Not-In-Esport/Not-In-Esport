@@ -9,27 +9,27 @@ jobs:
   build-and-deploy:
     runs-on: windows-latest
 
-steps:
-  - name: Checkout repository
-    uses: actions/checkout@v2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-  - name: Set up Node.js
-    uses: actions/setup-node@v3
-    with:
-      node-version: 14
-      registry-url: https://registry.npmjs.org/
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
 
-  - name: Install dependencies
-    run: npm install
+      - name: Install dependencies
+        run: npm install
 
-  - name: Build
-    run: npm run build
+      - name: Build
+        run: npm run build
 
-  - name: Deploy to GitHub Pages
-    uses: JamesIves/github-pages-deploy-action@releases/v3
-    with:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      BRANCH: gh-pages
-      FOLDER: dist
-      CLEAN: true
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist
+          CLEAN: true
 

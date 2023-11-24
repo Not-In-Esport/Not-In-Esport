@@ -1,6 +1,13 @@
+@import './base.css';
+
 #app, #body {
   width: 100%;
   height: 100%;
+  margin: 0;
+}
+
+#html {
+  background-color: white;
 }
 
 #header-canvas {

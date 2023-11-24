@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npx gh-pages -d dist -b gh-pages -u ${{ secrets.GITHUB_TOKEN }}"
+    "deploy": "npx gh-pages -d dist -b gh-pages"
   },
   "dependencies": {
     "gsap": "^3.12.2",

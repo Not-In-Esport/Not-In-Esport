@@ -109,12 +109,10 @@ a {
   justify-content: center;
   gap: 1rem;
 }
-
 .nie_logo {
   height: 5rem;
   z-index: 1;
 }
-
 h1 {
   color: rgba(255, 255, 255, 0.9);
   font-size: 3rem;
@@ -123,7 +121,6 @@ h1 {
   text-align: center;
   z-index: 1;
 }
-
 .main {
   background-color: white;
   width: 100%;
@@ -147,21 +144,18 @@ h1 {
   z-index: 5;
   position: relative;
 }
-
 .wave1 use {
   -webkit-animation: move-forever1 10s linear infinite;
   animation: move-forever1 10s linear infinite;
   -webkit-animation-delay: -2s;
   animation-delay: -2s;
 }
-
 .wave2 use {
   -webkit-animation: move-forever2 8s linear infinite;
   animation: move-forever2 8s linear infinite;
   -webkit-animation-delay: -2s;
   animation-delay: -2s;
 }
-
 .wave3 use {
   -webkit-animation: move-forever3 6s linear infinite;
   animation: move-forever3 6s linear infinite;
@@ -177,7 +171,6 @@ h1 {
     transform: translate(-90px, 0%);
   }
 }
-
 @keyframes move-forever2 {
   0% {
     transform: translate(-90px, 0%);
@@ -186,7 +179,6 @@ h1 {
     transform: translate(85px, 0%);
   }
 }
-
 @keyframes move-forever3 {
   0% {
     transform: translate(-90px, 0%);
